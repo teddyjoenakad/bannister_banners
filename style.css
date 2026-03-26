@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.horizontal-banner {
+    position: relative; 
+    background-color: white;
+    width: 95%;
+    max-width: 1050px;
+    height: 480px;
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.logo {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 180px;
+    z-index: 10;
+    object-fit: contain;
+}
+
+.left-content {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 5;
+    position: relative;
+}
+
+.title-area { 
+    min-height: 130px; 
+    margin-bottom: 20px;
+}
+
+.discover-title { 
+    font-size: 20px; 
+    line-height: 1.15; 
+    margin: 0; 
+    text-transform: uppercase; 
+}
+
+#carName { 
+    color: #ce9a0ccb;
+    font-weight: bold;
+    font-size: 27px; 
+    display: inline-block;
+}
+
+/* FADE CLASS - Triggered by JS */
+.fade-in-slow {
+    animation: simpleFade 0.5s ease-in-out forwards;
+}
+
+@keyframes simpleFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.discover-btn {
+    display: inline-block;
+    background-color: #ce9a0ccb;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: opacity 0.8s ease;
+}
+
+/* Gauge Section */
+.gauge-section {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gauge-wrapper {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas { position: absolute; }
+
+.price-container { 
+    text-align: center;
+    margin-top: -15px; 
+}
+
+h1 { font-size: 50px; margin: 0; line-height: 1; }
+.currency { font-size: 25px; font-weight: bold; margin-top: 14px; margin-right: 4px; }
+.main-price { display: flex; justify-content: center; align-items: flex-start; line-height: 1; }
+.suffix { font-size: 23px; display: block; line-height: 0.9; }
+.prefix { font-size: 19px; }
+
+/* Car Showcase */
+.right-content {
+    flex: 1.3;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.car-showcase {
+    position: relative;
+    width: 80%;
+    height: 80%;
+}
+
+.car-img {
+    position: absolute;
+    width: 130%; 
+    height: auto;
+    bottom: -70px;
+    right: -5px;
+    opacity: 0; 
+    transition: opacity 1s ease-in-out;
+}
+
+.car-img.active { opacity: 1; }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .horizontal-banner {
+        flex-direction: column;
+        height: auto; /* Allows the banner to grow with content */
+        padding: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo {
+        position: static;
+        margin-bottom: 20px;
+        width: 150px;
+    }
+
+    .left-content {
+        flex: none;
+        width: 100%;
+        align-items: center;
+    }
+
+    .title-area { 
+        min-height: auto; 
+        margin-bottom: 20px; 
+    }
+
+    .right-content {
+        width: 100%;
+        height: auto; /* Let the height be determined by the image */
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .car-showcase {
+        width: 100%;
+        height: auto;
+        min-height: 200px; /* Ensures space for the images */
+        position: relative;
+    }
+
+    .car-img {
+        width: 100%; /* Scales to mobile screen width */
+        position: relative; /* Removes absolute positioning from desktop */
+        bottom: 0 !important; /* Forces the car back up to the frame */
+        right: 0 !important;
+        margin: 0 auto;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+    }
+
+    .car-img.active {
+        position: relative; /* The active car sets the height of the container */
+        opacity: 1;
+        z-index: 2;
+    }
+    
+    /* Keeps inactive images from taking up space while hidden */
+    .car-img:not(.active) {
+        display: none; 
+    }
+}
