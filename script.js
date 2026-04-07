@@ -20,7 +20,17 @@ window.onload = function() {
     let currentIndex = 0;
     let targetValue = config[0].price;
     let currentValue = config[0].price; 
-    const lerpSpeed = 0.03; // Smooth gauge movement
+    const lerpSpeed = 0.018; // Smooth gauge movement
+
+    // Initialize odometer
+    const priceLabel = document.getElementById('priceLabel');
+    priceLabel.className = 'odometer';
+    const odometer = new Odometer({
+        el: priceLabel,
+        value: config[0].price,
+        format: 'ddd',
+        theme: 'default'
+    });
 
     function draw() {
         const diff = targetValue - currentValue;
@@ -70,13 +80,15 @@ window.onload = function() {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        document.getElementById('priceLabel').innerText = Math.round(currentValue);
         requestAnimationFrame(draw);
     }
 
     clickable.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % config.length;
         targetValue = config[currentIndex].price;
+
+        // Update odometer with smooth animation
+        odometer.update(config[currentIndex].price);
 
         // --- FADE ANIMATION LOGIC ---
         carNameElement.classList.remove('fade-in-slow'); // Reset animation
