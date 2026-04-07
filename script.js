@@ -20,7 +20,7 @@ window.onload = function() {
     let currentIndex = 0;
     let targetValue = config[0].price;
     let currentValue = config[0].price; 
-    const lerpSpeed = 0.018; // Smooth gauge movement
+    const lerpSpeed = 0.05; // Smooth gauge movement
 
     // Initialize odometer
     const priceLabel = document.getElementById('priceLabel');
